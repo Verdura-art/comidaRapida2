@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos en Línea - Comida Rápida</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="pedido-container">
+        <h1>Haz tu pedido en línea</h1>
+        <p>Selecciona tu comida favorita, ingresa tus datos, y disfruta de nuestra comida rápida.</p>
+        
+        <form action="submit_order.php" method="POST" class="pedido-form">
+            <!-- Sección de Información del Cliente -->
+            <div class="form-section">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" placeholder="Ingresa tu dirección" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Ingresa tu número de teléfono" required>
+            </div>
+
+            <!-- Sección de Selección de Comida -->
+            <h2>Selecciona tu comida:</h2>
+            <div class="menu-seleccion">
+                <label>
+                    <input type="radio" name="comida" value="hamburguesa" required>
+                    <div class="menu-item">
+                        <img src="imagenes/hambuergesa.jpg" alt="Hamburguesa">
+                        <p>Hamburguesa</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="comida" value="pizza" required>
+                    <div class="menu-item">
+                        <img src="imagenes/pizza.jpg" alt="Pizza">
+                        <p>Pizza</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="comida" value="tacos" required>
+                    <div class="menu-item">
+                        <img src="imagenes/tacos.jpg" alt="Tacos">
+                        <p>Tacos</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="comida" value="papas" required>
+                    <div class="menu-item">
+                        <img src="imagenes/papas.jpg" alt="Papas Fritas">
+                        <p>Papas Fritas</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Cantidad y botón de pedido -->
+            <div class="form-section">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+
+                <input type="submit" value="Realizar Pedido" class="btn-pedido">
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comida Rápida Express. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+    

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Comida Rápida</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Función para cargar los pedidos desde la base de datos
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('pedidos_db.php')
+                .then(response => response.json())
+                .then(data => {
+                    const pedidosContainer = document.getElementById('pedidos-container');
+                    data.forEach(pedido => {
+                        // Crear un elemento HTML para cada pedido
+                        const pedidoItem = document.createElement('div');
+                        pedidoItem.classList.add('pedido-item');
+
+                        // Agregar contenido
+                        pedidoItem.innerHTML = `
+                            <h4>Cliente: ${pedido.cliente}</h4>
+                            <p><strong>Detalles:</strong> ${pedido.detalles}</p>
+                            <p><strong>Total:</strong> $${pedido.total}</p>
+                            <p><strong>Fecha:</strong> ${pedido.fecha}</p>
+                        `;
+
+                        // Añadir el pedido al contenedor
+                        pedidosContainer.appendChild(pedidoItem);
+                    });
+                })
+                .catch(error => console.error('Error al cargar los pedidos:', error));
+        });
+
+        // Función para cargar los datos del menú desde la base de datos
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('menu_db.php')
+                .then(response => response.json())
+                .then(data => {
+                    const menuContainer = document.getElementById('menu-container');
+                    data.forEach(item => {
+                        // Crear un elemento HTML para cada item
+                        const menuItem = document.createElement('div');
+                        menuItem.classList.add('menu-item');
+
+                        // Agregar contenido
+                        menuItem.innerHTML = `
+                            <img src="imagenes/${item.imagen}" alt="${item.nombre}">
+                            <h3>${item.nombre}</h3>
+                            <p>${item.descripcion}</p>
+                            <p><strong>Precio:</strong> $${item.precio}</p>
+                        `;
+
+                        // Añadir el item al contenedor
+                        menuContainer.appendChild(menuItem);
+                    });
+                })
+                .catch(error => console.error('Error al cargar los datos del menú:', error));
+        });
+
+        // Función para abrir una nueva pestaña y mostrar los pedidos
+        function abrirPedidos() {
+            window.open('pedidos.html', '_blank');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Comida Rápida Express</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pedidos.html">Haz tu Pedido</a></li>
+                <li><a href="#">Menú</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección principal -->
+        <section class="hero">
+            <h2>La mejor comida rápida a tu alcance</h2>
+            <p>Disfruta de nuestros deliciosos platillos sin salir de casa.</p>
+            <a href="pedidos.html" class="cta-button">Haz tu Pedido Ahora</a>
+        </section>
+
+        <!-- Sección de pedidos dinámicos -->
+        <section class="pedidos-preview">
+            <h3>Pedidos Recientes</h3>
+            <div id="pedidos-container" class="pedidos-items">
+                <!-- Aquí se insertarán los pedidos dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Sección del menú dinámico -->
+        <section class="menu-preview">
+            <h3>Explora nuestro menú</h3>
+            <div id="menu-container" class="menu-items">
+                <!-- Aquí se insertarán los items dinámicamente -->
+            </div>
+        </section>
+
+    <footer>
+        <p>&copy; 2024 Comida Rápida Express. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
